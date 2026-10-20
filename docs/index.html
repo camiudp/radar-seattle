@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Radar Seattle</title>
+<title>Radar de empleos</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,6 +86,44 @@
   }
   .btn.apply { background: var(--evergreen); border-color: var(--evergreen); color: var(--surface); font-weight: 500; }
 
+
+  .areas { display: flex; gap: .4rem; margin: 2rem 0 0; border-bottom: 1.5px solid var(--line); }
+  .area {
+    font: inherit; font-size: 1.05rem; font-weight: 500; background: none; border: 0; color: var(--muted);
+    padding: .6rem .3rem; margin-right: 1rem; border-bottom: 3px solid transparent; margin-bottom: -1.5px; cursor: pointer;
+  }
+  .area[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--evergreen); }
+  .area .n { font-size: .85rem; color: var(--muted); font-weight: 400; }
+  .filters { margin-top: 1.2rem; }
+
+  .cvbar { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; margin-top: 1.1rem; font-size: .92rem; color: var(--muted); }
+  .linkbtn { font: inherit; font-size: .92rem; background: none; border: 0; color: var(--evergreen); text-decoration: underline; cursor: pointer; padding: 0; }
+  .btn.cv { border-color: var(--evergreen); color: var(--evergreen); font-weight: 500; cursor: pointer; font-family: inherit; }
+
+  dialog {
+    width: min(640px, calc(100vw - 2rem)); border: 1px solid var(--line); border-radius: 14px;
+    background: var(--surface); color: var(--ink); padding: 1.3rem;
+  }
+  dialog::backdrop { background: rgba(10, 20, 25, .55); }
+  dialog h3 { margin: 0 0 .3rem; font-size: 1.2rem; }
+  dialog p { margin: 0 0 .8rem; color: var(--muted); font-size: .92rem; }
+  dialog textarea {
+    width: 100%; min-height: 45vh; font: inherit; font-size: .9rem; line-height: 1.45; padding: .7rem;
+    border: 1.5px solid var(--line); border-radius: 10px; background: var(--fog); color: var(--ink); resize: vertical;
+  }
+  .dlg-actions { display: flex; gap: .5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: .9rem; }
+  .dlg-actions button { font: inherit; font-size: .92rem; padding: .45rem .9rem; border-radius: 8px; cursor: pointer;
+    border: 1.5px solid var(--line); background: transparent; color: var(--ink); }
+  .dlg-actions .primary { background: var(--evergreen); border-color: var(--evergreen); color: var(--surface); font-weight: 500; }
+  .dlg-actions .danger { margin-right: auto; color: var(--stop); border-color: transparent; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    background: var(--ink); color: var(--surface); padding: .7rem 1.1rem; border-radius: 10px; font-size: .92rem;
+    max-width: calc(100vw - 2rem); opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .toast.show { opacity: 1; }
+
   .empty { padding: 2rem 1.2rem; color: var(--muted); }
 
   h2 { font-size: 1.3rem; margin: 3rem 0 .4rem; }
@@ -109,6 +147,10 @@
     <p id="sub"></p>
   </header>
 
+  <div class="areas" role="tablist" aria-label="Áreas" id="areas"></div>
+
+  <div class="cvbar" id="cvbar"></div>
+
   <div class="filters" role="group" aria-label="Filtros">
     <button class="chip" data-visa="green" aria-pressed="true">🟢 Patrocina</button>
     <button class="chip" data-visa="yellow" aria-pressed="true">🟡 No dice</button>
@@ -119,13 +161,37 @@
 
   <section class="list" id="jobs" aria-live="polite"></section>
 
-  <h2>Empresas que sigue el robot</h2>
-  <p class="hint">Si una aparece en rojo, revisa su <em>slug</em> o portal en companies.yaml.</p>
+  <h2 id="coTitle">Empresas que sigue el robot</h2>
+  <p class="hint">Si una aparece en rojo, revisa su <em>slug</em>, careers_url o workday_url en companies.yaml.</p>
   <section class="list" id="companies"></section>
 </main>
 
+<dialog id="cvDialog" aria-labelledby="cvTitle">
+  <h3 id="cvTitle">Mi CV</h3>
+  <p>Pega aquí el texto de tu CV. Se guarda solo en este navegador: no se sube a GitHub ni lo ve nadie más.</p>
+  <textarea id="cvText" placeholder="Pega tu CV completo (texto)…"></textarea>
+  <div class="dlg-actions">
+    <button class="danger" id="cvDelete">Borrar CV</button>
+    <button id="cvCancel">Cancelar</button>
+    <button class="primary" id="cvSave">Guardar CV</button>
+  </div>
+</dialog>
+
+<dialog id="promptDialog" aria-labelledby="pTitle">
+  <h3 id="pTitle">Copia este prompt</h3>
+  <p>Tu navegador no dejó copiarlo solo. Selecciónalo, cópialo y pégalo en Claude.</p>
+  <textarea id="promptText" readonly></textarea>
+  <div class="dlg-actions">
+    <button id="pClose">Cerrar</button>
+    <button class="primary" id="pOpen">Abrir Claude</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-const state = { visa: new Set(["green", "yellow"]), onlyNew: false, q: "" };
+const CV_KEY = "radar-cv";
+const state = { region: null, visa: new Set(["green", "yellow"]), onlyNew: false, q: "" };
 let data = null;
 
 const DAY = 86400000;
@@ -138,8 +204,17 @@ const ago = d => {
   return `hace ${n} días`;
 };
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 const VISA_ICON = { green: "🟢", yellow: "🟡", red: "🔴" };
+
+function getCV() { try { return localStorage.getItem(CV_KEY) || ""; } catch { return ""; } }
+function setCV(v) { try { v ? localStorage.setItem(CV_KEY, v) : localStorage.removeItem(CV_KEY); return true; } catch { return false; } }
+
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 3500);
+}
 
 function ratingHtml(co) {
   if (!co || co.rating == null) return `Sin nota de Glassdoor todavía`;
@@ -154,87 +229,185 @@ function ratingHtml(co) {
   return `⭐ ${esc(co.rating)}${reviews}${checked}`;
 }
 
-function render() {
-  const companies = Object.fromEntries((data.companies || []).map(c => [c.name, c]));
-  const q = state.q.toLowerCase();
-  const jobs = data.jobs.filter(j =>
-    state.visa.has(j.visa.status) &&
-    (!state.onlyNew || j.first_seen === data.today) &&
-    (!q || (j.title + " " + j.company + " " + j.location).toLowerCase().includes(q))
-  );
+const regionJobs = () => data.jobs.filter(j => (j.region || "seattle") === state.region);
+const regionCompanies = () => data.companies.filter(c => (c.region || "seattle") === state.region);
+const isNew = j => j.first_seen === data.today && j.visa.status !== "red";
 
-  const el = document.getElementById("jobs");
-  if (!jobs.length) {
-    el.innerHTML = `<p class="empty">No hay vacantes con estos filtros. Prueba activar 🟡 o quitar "Solo nuevas".</p>`;
-  } else {
-    el.innerHTML = jobs.map(j => {
-      const co = companies[j.company] || {};
-      const isNew = j.first_seen === data.today;
-      return `
-      <article class="job" data-visa="${j.visa.status}">
-        <div class="bar" aria-hidden="true"></div>
-        <div class="body">
-          <div class="top">
-            <h3 class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></h3>
-            ${isNew ? `<span class="new">🆕 Nueva hoy</span>` : ""}
-          </div>
-          <p class="meta">${esc(j.company)}, ${esc(j.location || "sin ubicación")}${j.posted ? `, publicada ${ago(j.posted)}` : ""}</p>
-          <p class="visa">${VISA_ICON[j.visa.status]} ${esc(j.visa.reason)}</p>
-          ${j.visa.quote ? `<p class="quote">“${esc(j.visa.quote)}”</p>` : ""}
-          <p class="rating">${ratingHtml(co)}</p>
-          <div class="actions">
-            <a class="btn apply" href="${esc(j.url)}" target="_blank" rel="noopener">Postular</a>
-            <a class="btn" href="${esc(co.glassdoor_url)}" target="_blank" rel="noopener">Glassdoor</a>
-            <a class="btn" href="${esc(co.indeed_url)}" target="_blank" rel="noopener">Indeed</a>
-          </div>
-        </div>
-      </article>`;
-    }).join("");
-  }
+function renderAreas() {
+  const el = document.getElementById("areas");
+  el.innerHTML = Object.entries(data.regions).map(([k, r]) => {
+    const n = data.jobs.filter(j => (j.region || "seattle") === k && j.visa.status !== "red").length;
+    return `<button class="area" role="tab" data-region="${esc(k)}" aria-selected="${k === state.region}">${esc(r.label)} <span class="n">(${n})</span></button>`;
+  }).join("");
+  el.querySelectorAll(".area").forEach(b => b.addEventListener("click", () => {
+    state.region = b.dataset.region;
+    try { localStorage.setItem("radar-region", state.region); } catch {}
+    renderAll();
+  }));
 }
 
 function renderHeader() {
-  const fresh = data.jobs.filter(j => j.first_seen === data.today && j.visa.status !== "red").length;
-  const h = document.getElementById("headline");
-  h.textContent = fresh === 0 ? "Hoy no hay vacantes nuevas, pero el robot sigue mirando."
-    : fresh === 1 ? "Hoy hay 1 vacante nueva que calza contigo."
-    : `Hoy hay ${fresh} vacantes nuevas que calzan contigo.`;
+  const fresh = regionJobs().filter(isNew).length;
+  const label = data.regions[state.region]?.label || "";
+  document.getElementById("headline").textContent = fresh === 0
+    ? `Hoy no hay vacantes nuevas en ${label}, pero el robot sigue mirando.`
+    : `Hoy hay ${plural(fresh, "vacante nueva", "vacantes nuevas")} en ${label} que ${fresh === 1 ? "calza" : "calzan"} contigo.`;
   const when = new Date(data.generated_at).toLocaleString("es-CL", { dateStyle: "medium", timeStyle: "short" });
   const ok = data.companies.filter(c => c.ok).length;
   document.getElementById("sub").textContent =
-    `${data.jobs.length} vacantes en total y ${ok} de ${data.companies.length} empresas leídas. Última revisión: ${when}`;
+    `${plural(data.jobs.length, "vacante", "vacantes")} en total y ${ok} de ${data.companies.length} empresas leídas. Última revisión: ${when}`;
+}
+
+function renderCVBar() {
+  const has = !!getCV();
+  document.getElementById("cvbar").innerHTML = has
+    ? `📄 Tu CV está cargado en este navegador. <button class="linkbtn" id="cvEdit">Editar CV</button>`
+    : `📄 Carga tu CV para crear versiones a medida de cada vacante. <button class="linkbtn" id="cvEdit">Cargar CV</button>`;
+  document.getElementById("cvEdit").addEventListener("click", openCV);
+}
+
+function renderJobs() {
+  const companies = Object.fromEntries(data.companies.map(c => [c.name, c]));
+  const q = state.q.toLowerCase();
+  const jobs = regionJobs().filter(j =>
+    state.visa.has(j.visa.status) &&
+    (!state.onlyNew || j.first_seen === data.today) &&
+    (!q || (j.title + " " + j.company + " " + j.location).toLowerCase().includes(q)));
+
+  const el = document.getElementById("jobs");
+  if (!jobs.length) {
+    el.innerHTML = `<p class="empty">No hay vacantes con estos filtros. Prueba activar 🟡, quitar "Solo nuevas" o revisar la otra área.</p>`;
+    return;
+  }
+  el.innerHTML = jobs.map(j => {
+    const co = companies[j.company] || {};
+    return `
+    <article class="job" data-visa="${j.visa.status}">
+      <div class="bar" aria-hidden="true"></div>
+      <div class="body">
+        <div class="top">
+          <h3 class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></h3>
+          ${j.first_seen === data.today ? `<span class="new">🆕 Nueva hoy</span>` : ""}
+        </div>
+        <p class="meta">${esc(j.company)}, ${esc(j.location || "sin ubicación")}${j.posted ? `, publicada ${ago(j.posted)}` : ""}</p>
+        <p class="visa">${VISA_ICON[j.visa.status]} ${esc(j.visa.reason)}</p>
+        ${j.visa.quote ? `<p class="quote">“${esc(j.visa.quote)}”</p>` : ""}
+        <p class="rating">${ratingHtml(co)}</p>
+        <div class="actions">
+          <a class="btn apply" href="${esc(j.url)}" target="_blank" rel="noopener">Postular</a>
+          <button class="btn cv" data-job="${esc(j.id)}">Crear CV para esta vacante</button>
+          <a class="btn" href="${esc(co.glassdoor_url)}" target="_blank" rel="noopener">Glassdoor</a>
+          <a class="btn" href="${esc(co.indeed_url)}" target="_blank" rel="noopener">Indeed</a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+  el.querySelectorAll(".btn.cv").forEach(b => b.addEventListener("click", () => tailorCV(b.dataset.job)));
 }
 
 function renderCompanies() {
-  document.getElementById("companies").innerHTML = data.companies.map(c => `
+  const label = data.regions[state.region]?.label || "";
+  document.getElementById("coTitle").textContent = `Empresas que sigue el robot en ${label}`;
+  document.getElementById("companies").innerHTML = regionCompanies().map(c => `
     <div class="co">
       <span class="co-name">${esc(c.name)}${c.sponsor_history ? " 🟢" : ""}</span>
       <span class="co-status ${c.ok ? "" : "err"}">${c.ok
-        ? `${esc(c.ats)}: ${c.total} avisos, ${c.matched} calzan`
-        : `No se pudo leer (slug "${esc(c.slug)}")`}</span>
-    </div>`).join("");
+        ? `${esc(c.ats)}: ${plural(c.total, "aviso", "avisos")}, ${c.matched} ${c.matched === 1 ? "calza" : "calzan"}`
+        : `No se pudo leer: ${esc(c.error || "")}`}</span>
+    </div>`).join("") || `<p class="empty">No hay empresas en esta área todavía.</p>`;
 }
 
+function renderAll() { renderAreas(); renderHeader(); renderCVBar(); renderJobs(); renderCompanies(); }
+
+/* ---------- CV ---------- */
+const cvDialog = document.getElementById("cvDialog");
+function openCV() { document.getElementById("cvText").value = getCV(); cvDialog.showModal(); }
+document.getElementById("cvCancel").addEventListener("click", () => cvDialog.close());
+document.getElementById("cvSave").addEventListener("click", () => {
+  const v = document.getElementById("cvText").value.trim();
+  if (!v) { toast("Pega el texto de tu CV antes de guardar."); return; }
+  if (!setCV(v)) { toast("Este navegador no permite guardar datos. Revisa si estás en modo privado."); return; }
+  cvDialog.close(); renderCVBar(); toast("CV guardado en este navegador.");
+});
+document.getElementById("cvDelete").addEventListener("click", () => {
+  setCV(""); document.getElementById("cvText").value = ""; cvDialog.close(); renderCVBar(); toast("CV borrado de este navegador.");
+});
+
+function buildPrompt(job, cv) {
+  return `Eres experta en reclutamiento de perfiles de datos en Estados Unidos. Ajusta mi CV a esta vacante.
+
+Reglas:
+- Escribe el CV en inglés, formato estadounidense, máximo 1 página.
+- Usa SOLO experiencia, logros, cifras y habilidades que aparecen en mi CV. No inventes herramientas, números, cargos ni certificaciones.
+- Reordena y reformula para destacar lo que más pide el aviso, usando sus palabras clave cuando correspondan a algo que realmente hice.
+- Si el aviso pide algo que no tengo, no lo agregues al CV.
+
+Después del CV, agrega en español:
+1. Palabras clave del aviso que mi CV ya cubre.
+2. Palabras clave que me faltan (y que NO agregaste).
+3. Tres preguntas probables de entrevista para este cargo, con una idea de cómo responderlas con mi experiencia real.
+4. Si el aviso dice algo sobre patrocinio de visa, resúmelo.
+
+=== VACANTE ===
+Cargo: ${job.title}
+Empresa: ${job.company}
+Ubicación: ${job.location || "no indicada"}
+Link: ${job.url}
+
+Descripción:
+${job.description || "(El robot no guardó la descripción. Abre el link y pega aquí el texto del aviso.)"}
+
+=== MI CV ACTUAL ===
+${cv}`;
+}
+
+function tailorCV(id) {
+  const cv = getCV();
+  if (!cv) { toast("Primero carga tu CV."); openCV(); return; }
+  const job = data.jobs.find(j => j.id === id);
+  if (!job) return;
+  const prompt = buildPrompt(job, cv);
+  const win = window.open("https://claude.ai/new", "_blank");
+  if (win) win.opener = null;
+  const copy = navigator.clipboard?.writeText ? navigator.clipboard.writeText(prompt) : Promise.reject();
+  copy.then(() => toast(win ? "Prompt copiado. Pégalo en Claude con Cmd + V." : "Prompt copiado. Abre claude.ai y pégalo con Cmd + V."))
+      .catch(() => {
+        document.getElementById("promptText").value = prompt;
+        document.getElementById("promptDialog").showModal();
+      });
+}
+document.getElementById("pClose").addEventListener("click", () => document.getElementById("promptDialog").close());
+document.getElementById("pOpen").addEventListener("click", () => window.open("https://claude.ai/new", "_blank", "noopener"));
+
+/* ---------- Filtros ---------- */
 document.querySelectorAll(".chip[data-visa]").forEach(b => b.addEventListener("click", () => {
   const v = b.dataset.visa;
   state.visa.has(v) ? state.visa.delete(v) : state.visa.add(v);
   b.setAttribute("aria-pressed", state.visa.has(v));
-  render();
+  renderJobs();
 }));
 document.getElementById("onlyNew").addEventListener("click", e => {
   state.onlyNew = !state.onlyNew;
   e.currentTarget.setAttribute("aria-pressed", state.onlyNew);
-  render();
+  renderJobs();
 });
-document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; renderJobs(); });
 
+/* ---------- Carga ---------- */
 fetch("data/jobs.json", { cache: "no-store" })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(d => { data = d; renderHeader(); render(); renderCompanies(); })
+  .then(d => {
+    data = d;
+    if (!data.regions || !Object.keys(data.regions).length) data.regions = { seattle: { label: "Seattle" } };
+    let saved = null; try { saved = localStorage.getItem("radar-region"); } catch {}
+    state.region = data.regions[saved] ? saved : Object.keys(data.regions)[0];
+    renderAll();
+  })
   .catch(() => {
     document.getElementById("headline").textContent = "Todavía no hay datos.";
     document.getElementById("sub").textContent =
       "Corre el robot una vez desde la pestaña Actions de GitHub (botón Run workflow) y vuelve a abrir esta página.";
+    renderCVBar();
   });
 </script>
 </body>
