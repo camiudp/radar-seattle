@@ -1,9 +1,18 @@
 {
-  "generated_at": "2026-10-20T01:13:41+00:00",
+  "generated_at": "2026-10-20T01:29:20+00:00",
   "today": "2026-10-20",
+  "regions": {
+    "seattle": {
+      "label": "Seattle"
+    },
+    "miami": {
+      "label": "Miami / Weston"
+    }
+  },
   "companies": [
     {
       "name": "Remitly",
+      "region": "seattle",
       "slug": "remitly",
       "sponsor_history": true,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Remitly",
@@ -13,12 +22,14 @@
       "rating_checked": null,
       "ok": false,
       "ats": null,
+      "detected": null,
       "total": 0,
       "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
     },
     {
       "name": "Possible Finance",
+      "region": "seattle",
       "slug": "possiblefinance",
       "sponsor_history": true,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Possible+Finance",
@@ -26,14 +37,16 @@
       "rating": null,
       "reviews": null,
       "rating_checked": null,
-      "ok": false,
-      "ats": null,
-      "total": 0,
-      "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "ok": true,
+      "ats": "ashby",
+      "detected": "possible-finance",
+      "total": 7,
+      "error": null,
+      "matched": 1
     },
     {
       "name": "Envive",
+      "region": "seattle",
       "slug": "envive",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Envive",
@@ -43,12 +56,14 @@
       "rating_checked": null,
       "ok": false,
       "ats": null,
+      "detected": null,
       "total": 0,
       "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
     },
     {
       "name": "Augmodo",
+      "region": "seattle",
       "slug": "augmodo",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Augmodo",
@@ -58,12 +73,14 @@
       "rating_checked": null,
       "ok": true,
       "ats": "ashby",
+      "detected": "augmodo",
       "total": 5,
       "error": null,
       "matched": 1
     },
     {
       "name": "Auger",
+      "region": "seattle",
       "slug": "auger",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Auger",
@@ -73,12 +90,14 @@
       "rating_checked": null,
       "ok": false,
       "ats": null,
+      "detected": null,
       "total": 0,
       "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
     },
     {
       "name": "Routable",
+      "region": "seattle",
       "slug": "routable",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Routable",
@@ -88,12 +107,14 @@
       "rating_checked": null,
       "ok": false,
       "ats": null,
+      "detected": null,
       "total": 0,
       "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
     },
     {
       "name": "Arrived",
+      "region": "seattle",
       "slug": "arrived",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Arrived",
@@ -103,12 +124,14 @@
       "rating_checked": null,
       "ok": false,
       "ats": null,
+      "detected": null,
       "total": 0,
       "matched": 0,
-      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
     },
     {
       "name": "Coinme",
+      "region": "seattle",
       "slug": "coinme",
       "sponsor_history": false,
       "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Coinme",
@@ -118,9 +141,61 @@
       "rating_checked": null,
       "ok": true,
       "ats": "greenhouse",
+      "detected": "coinme",
       "total": 3,
       "error": null,
       "matched": 0
+    },
+    {
+      "name": "UKG",
+      "region": "miami",
+      "slug": "ukg",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=UKG",
+      "indeed_url": "https://www.indeed.com/cmp/UKG",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "detected": null,
+      "total": 0,
+      "matched": 0,
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
+    },
+    {
+      "name": "Chewy",
+      "region": "miami",
+      "slug": "chewy",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Chewy",
+      "indeed_url": "https://www.indeed.com/cmp/Chewy",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "detected": null,
+      "total": 0,
+      "matched": 0,
+      "error": "careers_url no tiene links a Greenhouse, Lever, Ashby ni Workday"
+    },
+    {
+      "name": "Royal Caribbean Group",
+      "region": "miami",
+      "slug": "royalcaribbean",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Royal+Caribbean+Group",
+      "indeed_url": "https://www.indeed.com/cmp/Royal-Caribbean-Group",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "detected": null,
+      "total": 0,
+      "matched": 0,
+      "error": "No se pudo abrir careers_url (HTTPError)"
     }
   ],
   "jobs": [
@@ -129,6 +204,7 @@
       "title": "Software Engineer, Data Intelligence",
       "url": "https://jobs.ashbyhq.com/augmodo/34eb5835-cc56-4f7c-a1b0-7da45b2da72d",
       "company": "Augmodo",
+      "region": "seattle",
       "location": "United States (Remote)",
       "posted": "2026-09-18",
       "first_seen": "2026-10-20",
@@ -136,7 +212,24 @@
         "status": "yellow",
         "reason": "El aviso no menciona visas",
         "quote": null
-      }
+      },
+      "description": "ABOUT AUGMODO\n\nAugmodo is building the \"operating system for the physical shelf.\" We use spatial computing and wearable AI to provide real-time, store-level insights that were previously impossible to capture. We are moving fast, and our data needs to move even faster—while remaining hyper-accurate.\n\n\n\n\nTHE CHALLENGE\n\nWe are looking for a Software Engineer to own the logic behind our Spatial Data Ingestion & Conflation Engine. You will build the pipelines that take raw, complex data from the edge and transform it into high-fidelity insights for our customers. This role is about precision at scale: ensuring that when a brand or retailer looks at our data, it is versioned, reliable, and \"production-ready.\"\n\n\n\n\nKEY RESPONSIBILITIES\n\n - Build Staged Pipelines: Design and maintain versioned data pipelines that handle the ingestion and conflation of complex retail data (e.g., matching computer vision detections to master product catalogs).\n\n - High-Fidelity Output: Ensure that data outputs surfaced to consumer-facing dashboards meet a high quality bar for accuracy and reliability.\n\n - Hybrid AI Strategy: Implement a \"right tool for the job\" approach—building robust rules-based normalization and RegEx logic for bounded tasks, while strategically integrating LLMs to solve high-complexity data matching and entity resolution.\n\n - Scale & Cost Management: Architect solutions that are mindful of the massive scale of retail environments, ensuring AI integrations are cost-effective and performant.\n\n - Versioned Data Evolution: Manage the lifecycle of data schema and pipeline logic to allow for rapid iteration without breaking downstream consumer insights.\n\n\nREQUIRED QUALIFICATIONS\n\n - The \"Data Plumber\" Mindset: Extensive experience building reliable, staged pipelines for complex ingestion tasks.\n\n - Entity Resolution & Conflation: You have experience merging disparate, messy data sources into a unified \"Golden Record.\"\n\n - Pragmatic AI Experience: You are comfortable with LLMs and prompt engineering but remain skeptical enough to know when a simple regex or bounded heuristic is the better engineering choice.\n\n - Engineering Rigor: You believe in versioning everything—from your code to your data schemas.\n\n\nBONUS POINTS\n\n - Physical Product Domain: Experience in retail, logistics, or supply chain (handling SKUs, UPCs, and physical inventory data).\n\n - Spatial Data: Experience working with data that has a physical or geographic component (GIS, LIDAR, or Computer Vision metadata).\n\n\nAugmodo offers benefits inclusive of medical, dental, vision and 401k\n\nThe salary range for this role is $150,000 - 200,000 USD +equity\n\nAugmodo is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees regardless of race, color, religion, sex, sexual orientation, gender identity, national origin, veteran, or disability status."
+    },
+    {
+      "id": "ab-possible-finance-1e178106-fd21-4630-b03a-3310a399ff34",
+      "title": "Senior Data Scientist",
+      "url": "https://jobs.ashbyhq.com/possible-finance/1e178106-fd21-4630-b03a-3310a399ff34",
+      "company": "Possible Finance",
+      "region": "seattle",
+      "location": "Seattle, WA (Remote)",
+      "posted": "2026-09-17",
+      "first_seen": "2026-10-20",
+      "visa": {
+        "status": "green",
+        "reason": "El aviso no lo menciona, pero la empresa ha patrocinado antes",
+        "quote": null
+      },
+      "description": "TEAM INTRODUCTION\n\nPossible is a mission-driven fintech company helping everyday Americans build financial health through access to fair, affordable credit. Our data team sits at the center of a growing company, building the models, metrics, and experimentation infrastructure that powers how Possible makes decisions, measures performance, and operates with rigor at scale.\n\nWe are seeking a Senior Data Scientist to work at the intersection of payments performance, optimization, and fraud, owning the analytical systems that govern how reliably money moves between Possible and our customers. This role expands our capacity to treat repayment as a designed experience rather than a back-end process, building payments that work with the rhythm of our customers' financial lives.\n\n\nTHE ROLE & IMPACT\n\nYou will own the data science behind how money moves at Possible. You'll define and build the payments-health scorecard the company runs on, along with the monitoring that surfaces anomalies at the channel and experiment level within days. You'll own how we time payments, sharpening how we identify a customer's pay cycle and designing retry strategies that work with it rather than against it, so that more payments clear on the first attempt: fewer failed-payment fees for customers, better recovery for the business. And you'll redefine how Possible understands payments fraud, building recurring reporting on the patterns that matter and developing a model that scores the risk of a new payment method or a payment that may not clear.\n\nYou'll work in Python, SQL, and PySpark on Databricks, with Datadog for monitoring and standard MLOps tooling for deployment. You'll partner with Engineering, Product, and Risk to develop the payment strategy as an input to the engineering roadmap.\n\n\nWHAT YOU'LL BRING\n\n\nREQUIREMENTS\n\nMust-Have\n\nThis role requires depth in the data science fundamentals and payments domain knowledge. You should have experience with modeling, production monitoring, and experiment design, and an in-depth understanding of payment rails (ACH, RTP, card, and interchange) and payment behavior. Hands-on production ML development is essential: you have built a model, deployed it, watched it drift, and retrained it, using tooling like XGBoost and MLflow or their equivalents. You bring strong Python and SQL, plus comfort with large datasets in a distributed environment such as PySpark on Databricks, experimentation and causal inference skills, and the judgment to know which method a question calls for, as well as feature engineering instincts for transactional data. You hold a high bar for your own work: you understand your data before you draw conclusions from it, and you'd rather find the flaw in your analysis yourself.\n\nPreferred\n\nPreferred experience includes a track record of cross-functional collaboration that has shaped another team's roadmap rather than just informed it, and hands-on experience with observability tooling such as Datadog.\n\nNice-to-Have\n\nDirect fraud modeling experience and a background in collections, recovery, or lending operations in a regulated space are nice to have.\n\nHow we work. We expect you to act with ownership—you'll be defining what healthy payments means here, not waiting for a spec. We take a scientific approach: rapid experimentation, intellectual honesty, and a willingness to change your mind when the data says so. And this role is mission-driven in a concrete way, because the strategies you design touch real people's bank accounts. We optimize for customers ending up better off, not just for dollars collected.\n\nPossible Finance is on a mission to help communities break the debt cycle and unlock economic mobility for generations to come. With the backing of our venture investors (Union Square Ventures, Canvas Ventures, Euclidean Capital, Unlock Venture Partners), a loyal following of hundreds of thousands of customers, and a fantastic team, we're unwavering in our fight for financial fairness. As one of only a few fintech Public Benefit Corporations, we've baked our dual commitment to building a profitable and socially impactful company right into our charter; we only succeed when our customers do too. If you'd like to help us ship financial products that protect consumers from predatory lending practices and promote financial health, give us a shout.\n\n \n\nThis is a Hybrid position. We work in the office three days a week (Monday, Tuesday, Thursday). Our office is in downtown Seattle.\n\n \n\nThe compensation range for this role is $175,720 to $191,000. We also offer significant stock options, full benefits, a bonus plan, commuter benefits, and a very desirable office with free drink and food options."
     }
   ]
 }
