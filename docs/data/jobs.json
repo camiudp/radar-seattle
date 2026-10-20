@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-10-20T01:13:41+00:00",
+  "today": "2026-10-20",
+  "companies": [
+    {
+      "name": "Remitly",
+      "slug": "remitly",
+      "sponsor_history": true,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Remitly",
+      "indeed_url": "https://www.indeed.com/cmp/Remitly",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Possible Finance",
+      "slug": "possiblefinance",
+      "sponsor_history": true,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Possible+Finance",
+      "indeed_url": "https://www.indeed.com/cmp/Possible-Finance",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Envive",
+      "slug": "envive",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Envive",
+      "indeed_url": "https://www.indeed.com/cmp/Envive",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Augmodo",
+      "slug": "augmodo",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Augmodo",
+      "indeed_url": "https://www.indeed.com/cmp/Augmodo",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": true,
+      "ats": "ashby",
+      "total": 5,
+      "error": null,
+      "matched": 1
+    },
+    {
+      "name": "Auger",
+      "slug": "auger",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Auger",
+      "indeed_url": "https://www.indeed.com/cmp/Auger",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Routable",
+      "slug": "routable",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Routable",
+      "indeed_url": "https://www.indeed.com/cmp/Routable",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Arrived",
+      "slug": "arrived",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Arrived",
+      "indeed_url": "https://www.indeed.com/cmp/Arrived",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": false,
+      "ats": null,
+      "total": 0,
+      "matched": 0,
+      "error": "greenhouse: HTTPError; lever: HTTPError; ashby: HTTPError"
+    },
+    {
+      "name": "Coinme",
+      "slug": "coinme",
+      "sponsor_history": false,
+      "glassdoor_url": "https://www.glassdoor.com/Search/results.htm?keyword=Coinme",
+      "indeed_url": "https://www.indeed.com/cmp/Coinme",
+      "rating": null,
+      "reviews": null,
+      "rating_checked": null,
+      "ok": true,
+      "ats": "greenhouse",
+      "total": 3,
+      "error": null,
+      "matched": 0
+    }
+  ],
+  "jobs": [
+    {
+      "id": "ab-augmodo-34eb5835-cc56-4f7c-a1b0-7da45b2da72d",
+      "title": "Software Engineer, Data Intelligence",
+      "url": "https://jobs.ashbyhq.com/augmodo/34eb5835-cc56-4f7c-a1b0-7da45b2da72d",
+      "company": "Augmodo",
+      "location": "United States (Remote)",
+      "posted": "2026-09-18",
+      "first_seen": "2026-10-20",
+      "visa": {
+        "status": "yellow",
+        "reason": "El aviso no menciona visas",
+        "quote": null
+      }
+    }
+  ]
+}
