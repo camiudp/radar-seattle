@@ -1,0 +1,139 @@
+# =============================================================
+#  Radar de empleos Seattle - configuración
+#  Este es el ÚNICO archivo que necesitas editar a mano.
+# =============================================================
+
+# --- Qué buscar en el título del cargo (basta con que calce una) ---
+title_include:
+  - analyst
+  - analytics
+  - data
+  - business intelligence
+  - insights
+  - automation
+  - bi engineer
+
+# --- Títulos que no te interesan ---
+title_exclude:
+  - intern
+  - internship
+  - security analyst
+  - legal
+
+# --- Ubicaciones aceptadas (basta con que el texto contenga una) ---
+location_include:
+  - seattle
+  - bellevue
+  - redmond
+  - kirkland
+  - washington
+  - ", wa"
+  - remote
+
+# --- Si la ubicación contiene alguna de estas, se descarta ---
+location_exclude:
+  - canada
+  - india
+  - united kingdom
+  - europe
+  - mexico city
+
+# =============================================================
+#  Empresas
+#  ats: auto | greenhouse | lever | ashby
+#    "auto" prueba los tres. Cuando el robot detecte cuál usa,
+#    lo verás en la sección "Empresas" de la página y puedes fijarlo aquí.
+#  slug: el nombre de la empresa en la URL de su portal de empleo.
+#    Ej: jobs.lever.co/ESTO  o  boards.greenhouse.io/ESTO
+#  sponsor_history: true si ya confirmaste que ha patrocinado visas.
+#  glassdoor: completa a mano (rating, reviews, checked = fecha AAAA-MM-DD).
+#    Las URLs son opcionales: si las dejas vacías se usa una búsqueda.
+# =============================================================
+companies:
+  - name: Remitly
+    ats: auto
+    slug: remitly
+    sponsor_history: true
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Possible Finance
+    ats: auto
+    slug: possiblefinance
+    sponsor_history: true
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Envive
+    ats: auto
+    slug: envive
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Augmodo
+    ats: auto
+    slug: augmodo
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Auger
+    ats: auto
+    slug: auger
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Routable
+    ats: auto
+    slug: routable
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Arrived
+    ats: auto
+    slug: arrived
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
+
+  - name: Coinme
+    ats: auto
+    slug: coinme
+    sponsor_history: false
+    glassdoor:
+      rating:
+      reviews:
+      checked:
+      url:
+    indeed_url:
