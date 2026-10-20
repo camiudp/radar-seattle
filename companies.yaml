@@ -1,5 +1,5 @@
 # =============================================================
-#  Radar de empleos Seattle - configuración
+#  Radar de empleos - configuración
 #  Este es el ÚNICO archivo que necesitas editar a mano.
 # =============================================================
 
@@ -20,16 +20,6 @@ title_exclude:
   - security analyst
   - legal
 
-# --- Ubicaciones aceptadas (basta con que el texto contenga una) ---
-location_include:
-  - seattle
-  - bellevue
-  - redmond
-  - kirkland
-  - washington
-  - ", wa"
-  - remote
-
 # --- Si la ubicación contiene alguna de estas, se descarta ---
 location_exclude:
   - canada
@@ -38,102 +28,132 @@ location_exclude:
   - europe
   - mexico city
 
+# --- Áreas de la página. Cada empresa pertenece a una. ---
+regions:
+  seattle:
+    label: Seattle
+    location_include: [seattle, bellevue, redmond, kirkland, washington, ", wa", remote]
+  miami:
+    label: Miami / Weston
+    location_include: [miami, weston, fort lauderdale, plantation, sunrise, doral, dania beach,
+                       coral gables, boca raton, broward, florida, ", fl", remote]
+
 # =============================================================
 #  Empresas
-#  ats: auto | greenhouse | lever | ashby
-#    "auto" prueba los tres. Cuando el robot detecte cuál usa,
-#    lo verás en la sección "Empresas" de la página y puedes fijarlo aquí.
-#  slug: el nombre de la empresa en la URL de su portal de empleo.
-#    Ej: jobs.lever.co/ESTO  o  boards.greenhouse.io/ESTO
+#  region: seattle | miami
+#  ats: auto | greenhouse | lever | ashby | workday
+#    "auto" prueba variantes del slug en Greenhouse, Lever y Ashby,
+#    y si nada funciona, busca links en careers_url.
+#  slug: nombre de la empresa en la URL de su portal (jobs.lever.co/ESTO)
+#  careers_url: página de empleos de la empresa (ayuda a detectar el portal)
+#  workday_url: si usa Workday, pega aquí la URL base de su portal,
+#    por ejemplo https://empresa.wd5.myworkdayjobs.com/NombreDelSitio
 #  sponsor_history: true si ya confirmaste que ha patrocinado visas.
-#  glassdoor: completa a mano (rating, reviews, checked = fecha AAAA-MM-DD).
-#    Las URLs son opcionales: si las dejas vacías se usa una búsqueda.
+#  glassdoor: completa a mano (rating, reviews, checked = AAAA-MM-DD).
+#
+#  Las careers_url marcadas "verificar" son mi mejor suposición: si la
+#  empresa sale en rojo en la página, revisa esa URL primero.
 # =============================================================
 companies:
+  # ---------------- SEATTLE ----------------
   - name: Remitly
+    region: seattle
     ats: auto
     slug: remitly
+    careers_url: https://careers.remitly.com/   # verificar
     sponsor_history: true
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Possible Finance
+    region: seattle
     ats: auto
     slug: possiblefinance
+    careers_url: https://www.possiblefinance.com/careers   # verificar
     sponsor_history: true
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Envive
+    region: seattle
     ats: auto
     slug: envive
+    careers_url: https://www.envive.ai/careers   # verificar
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Augmodo
-    ats: auto
+    region: seattle
+    ats: ashby          # confirmado por el robot
     slug: augmodo
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Auger
+    region: seattle
     ats: auto
     slug: auger
+    careers_url: https://www.auger.com/careers   # verificar
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Routable
+    region: seattle
     ats: auto
     slug: routable
+    careers_url: https://routable.com/careers   # verificar
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Arrived
+    region: seattle
     ats: auto
     slug: arrived
+    careers_url: https://arrived.com/careers   # verificar
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:
 
   - name: Coinme
+    region: seattle
     ats: auto
     slug: coinme
+    careers_url: https://coinme.com/careers   # verificar
     sponsor_history: false
-    glassdoor:
-      rating:
-      reviews:
-      checked:
-      url:
+    glassdoor: {rating: , reviews: , checked: , url: }
+    indeed_url:
+
+  # ---------------- MIAMI / WESTON ----------------
+  - name: UKG
+    region: miami
+    ats: auto
+    slug: ukg
+    careers_url: https://www.ukg.com/careers
+    workday_url:        # si sale en rojo: entra a un aviso de UKG y pega aquí la URL base de Workday
+    sponsor_history: false
+    glassdoor: {rating: , reviews: , checked: , url: }
+    indeed_url:
+
+  - name: Chewy
+    region: miami
+    ats: auto
+    slug: chewy
+    careers_url: https://careers.chewy.com/   # verificar
+    workday_url:
+    sponsor_history: false
+    glassdoor: {rating: , reviews: , checked: , url: }
+    indeed_url:
+
+  - name: Royal Caribbean Group
+    region: miami
+    ats: auto
+    slug: royalcaribbean
+    careers_url: https://www.royalcaribbeangroup.com/careers/   # verificar
+    workday_url:
+    sponsor_history: false
+    glassdoor: {rating: , reviews: , checked: , url: }
     indeed_url:

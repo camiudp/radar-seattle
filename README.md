@@ -1,4 +1,4 @@
-# 🌲 Radar de empleos Seattle
+# 🌲 Radar de empleos Seattle + Miami
 
 Robot que todos los días revisa los portales de empleo de mis empresas objetivo,
 filtra vacantes de datos/analytics en Seattle o remotas y las clasifica según
@@ -9,6 +9,13 @@ lo que dicen sobre patrocinio de visa:
 - 🔴 el aviso dice que no patrocina (oculto por defecto en la página)
 
 Hecho con Python + GitHub Actions + GitHub Pages.
+
+## Novedades v2
+
+- Dos áreas en la página: **Seattle** y **Miami / Weston** (cada empresa tiene `region` en `companies.yaml`).
+- Lee también portales **Workday** (campo `workday_url`) y detecta el portal desde `careers_url`.
+- Botón **Crear CV para esta vacante**: arma un prompt con tu CV + el aviso, lo copia y abre Claude.
+  Tu CV se guarda **solo en tu navegador** (botón "Cargar CV"), nunca en el repo.
 
 ## Archivos
 
