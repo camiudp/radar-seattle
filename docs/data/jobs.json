@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-28T16:20:36+00:00",
-  "today": "2026-10-28",
+  "generated_at": "2026-10-29T16:30:14+00:00",
+  "today": "2026-10-29",
   "regions": {
     "seattle": {
       "label": "Seattle"
@@ -40,7 +40,7 @@
       "ok": true,
       "ats": "ashby",
       "detected": "possible-finance",
-      "total": 6,
+      "total": 7,
       "error": null,
       "matched": 1
     },
