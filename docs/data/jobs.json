@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-06T17:00:02+00:00",
-  "today": "2026-11-06",
+  "generated_at": "2026-11-07T15:58:08+00:00",
+  "today": "2026-11-07",
   "regions": {
     "seattle": {
       "label": "Seattle"
@@ -74,9 +74,9 @@
       "ok": true,
       "ats": "ashby",
       "detected": "augmodo",
-      "total": 2,
+      "total": 3,
       "error": null,
-      "matched": 1
+      "matched": 2
     },
     {
       "name": "Auger",
@@ -199,6 +199,22 @@
     }
   ],
   "jobs": [
+    {
+      "id": "ab-augmodo-a3f8c886-7722-444f-99f1-007b29f843b4",
+      "title": "Data Collection Coordinator",
+      "url": "https://jobs.ashbyhq.com/augmodo/a3f8c886-7722-444f-99f1-007b29f843b4",
+      "company": "Augmodo",
+      "region": "seattle",
+      "location": "United States (Remote)",
+      "posted": "2026-11-06",
+      "first_seen": "2026-11-07",
+      "visa": {
+        "status": "yellow",
+        "reason": "El aviso no menciona visas",
+        "quote": null
+      },
+      "description": "About Augmodo\n\nAugmodo builds AI for retail stores. Our wearable Smartbadge uses cameras and computer vision to map store shelves as associates work, giving retailers a live view of empty shelves, overstock, and planogram gaps. Our customers include Chemist Warehouse (CWH), Australia's largest pharmacy retailer.\n\n\n\nAbout this engagement\n\nWe’re looking for an independent contractor to help with a short-term increase in data collection work. The current focus is accuracy visits: in-store checks that confirm what our AI sees on the shelf.\n\nVisit volume has grown faster than our tools, so we need help with the hands-on tasks: scheduling visits, collecting visit data, and processing it into spreadsheets.\n\n\n\nScope of work\n\nEach week, Augmodo provides visit targets and the required data format. You decide how and when to do the work to meet each week's deliverables, which are:\n\n 1. Schedule visits. Book accuracy visits with Augmodo's field vendors and taskers, following the weekly visit targets provided. Handle reschedules and cancellations.\n\n 2. Download visit data. Collect the data from each completed visit.\n\n 3. Process the data. Enter visit results and report spreadsheets, in the required format.\n\n 4. Hand off completed data. Deliver the finished spreadsheets on schedule and flag any visits that could not be completed.\n\nThe scope may also include ad hoc data collection projects, in the same capacity. These follow the same approach: Augmodo sets the targets and data format, and you deliver the completed data.\n\n\n\nWhat you bring\n\nRequired\n\n• Experience with scheduling, coordination, or high-volume data entry\n\n• Strong attention to detail and accuracy\n\n• Comfort with Google Sheets (filters, lookups, basic formulas) and Google Drive \n\n• Basic Claude skills\n\n• Clear, timely written communication\n\n• Based in the US, with reliable availability during Pacific Time afternoons and evenings, when Australian stores open (roughly 2–8 pm PT, shifting about two hours later during US summer)\n\nNice to have\n\n• Retail or merchandising experience\n\n\n\nPosition Details\n\nIndependent contractor (1099). Not eligible for employee benefits.\n\nRate: $25 per hour.\n\nHours: Estimated 30 to 38 hours per week, depending on visit volume. You set your own schedule.\n\nTerm: 3 month contract, possible extension.\n\nRemote, US-based. West Coast (Pacific Time) preferred. No in-store visits required.\n\n\n\n\nHow to apply\n\nSend your resume and a short note about a time you handled high-volume scheduling or data entry accurately. Apply at https://www.augmodo.com/careers.\n\n\n\nAbout this engagement: this is a temporary independent contractor engagement.\n\nAugmodo does not discriminate in selecting contractors on the basis of race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, veteran status, or any other characteristic protected by law."
+    },
     {
       "id": "ab-augmodo-34eb5835-cc56-4f7c-a1b0-7da45b2da72d",
       "title": "Software Engineer, Data Intelligence",
